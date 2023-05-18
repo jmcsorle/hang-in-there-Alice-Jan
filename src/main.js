@@ -128,10 +128,17 @@ function getPosterAssets() {
     randomTitles: getRandomIndex(titles),
     randomQuotes: getRandomIndex(quotes)
   }
-//  return randomPosterImg.innerText = randomAssetGroup.randomImage
- return randomPosterTitle.innerText = randomAssetGroup.randomTitles
-  // return randomAssetGroup
 }
+
+function displayPoster(poster) {
+  // we're accessing the variable 'randomPosterImg, Quote, and title' 
+  // we're accessing the src of the image and the innerHTML that lives originally in the html
+  // which then we are assigning it to poster which represents the object in createPoster since we have to access the value of imageURL, quote and title.
+  // pretty much it's saying hey target this from the html and assign it to the value of imageURL quote and title.
+  randomPosterImg.src = poster.imageURL,
+  randomPosterQuote.innerHTML = poster.quote,
+  randomPosterTitle.innerHTML = poster.title
+};
 
 /* Pseudocode:
 ***************Done*********************
