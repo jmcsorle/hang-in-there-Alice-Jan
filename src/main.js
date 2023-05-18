@@ -140,6 +140,19 @@ function displayPoster(poster) {
   randomPosterTitle.innerHTML = poster.title
 };
 
+function randomPoster() {
+  // this is where it gets fun
+  // It calls the getPosterAssets() function to get a random index for the poster assets.
+// It uses the random index to retrieve an image, title, and quote from the images, titles, and quotes arrays.
+// It calls the createPoster() function with the retrieved image, title, and quote to create a currentPoster object.
+// It calls the displayPoster() function to display the currentPoster object on a webpage.
+// Finally, it returns the currentPoster object.
+  var random = getPosterAssets();
+  currentPoster = createPoster(images[random.randomImage], titles[random.randomTitles], quotes[random.randomQuotes]);
+  displayPoster(currentPoster);
+  return currentPoster;
+}
+
 /* Pseudocode:
 ***************Done*********************
 DONE!!! Create a function that will return random assets:
