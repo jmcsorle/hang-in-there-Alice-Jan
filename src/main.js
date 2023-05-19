@@ -14,6 +14,7 @@ var randomPosterButton = document.querySelector('.show-random');
 var makePosterButton = document.querySelector('.show-form');
 var nevermindButtom = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
+// var backToMainButton = document.querySelector('.back-to-main')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -122,7 +123,7 @@ randomPosterButton.addEventListener('click', randomPoster);
 makePosterButton.addEventListener('click', makePoster);
 nevermindButtom.addEventListener('click', backToMain)
 showSavedButton.addEventListener('click', showSavedPosters)
-
+backToMainButton.addEventListener('click', showSavedPosters)
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -150,32 +151,27 @@ function randomPoster() {
 }
 
 function makePoster() {
-  hide([mainPoster]);
-  add([posterForm]);
+  hide(mainPoster);
+  show(posterForm);
 }
 
 function backToMain() {
-  hide([posterForm]);
-  add([mainPoster]);
+  hide(posterForm);
+  show(mainPoster);
 }
 
 function showSavedPosters() {
-  hide([mainPoster]);
-  add([savedPosters]);
+  hide(mainPoster);
+  show(savedPostersPage);
 }
 
-function hide(elements) {
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].classList.add('hidden');
-  }
+function hide(element) {
+  element.classList.add('hidden')
 }
 
-function add(elements) {
-  for (var i = 0; i < elements.length; i++) {
-  elements[i].classList.remove('hidden');
-  }
+function show(element) {
+  element.classList.remove('hidden')
 }
-
 // Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
 
 // --- 
@@ -183,4 +179,9 @@ function add(elements) {
 /* 
 - we're going to need to push the saved posters to the saved posters array
 doing something with the line 38 on html bc that's where they're going into.
+- figure out how the form input can get saved and pushed into the saved posters array to show in the saved posters form.
+- an array of object
+  - title
+  - quotes
+  - image
 */
