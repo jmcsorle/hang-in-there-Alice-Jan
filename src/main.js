@@ -1,8 +1,8 @@
 // query selector variables go here 👇
-//we are querying the poster classes from lines 13 - 15 in the HTML code, under the Main Poster Section - becayse we are querying the class, that is why we used the "." in front.
 var randomPosterImg = document.querySelector('.poster-img');
 var randomPosterTitle = document.querySelector('.poster-title');
 var randomPosterQuote = document.querySelector('.poster-quote');
+var randomPosterButton = document.querySelector('.show-random');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -106,7 +106,8 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
-window.addEventListener('load', getPosterAssets)
+window.addEventListener('load', randomPoster);
+randomPosterButton.addEventListener('click', randomPoster);
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -122,53 +123,14 @@ function createPoster(imageURL, title, quote) {
     quote: quote}
 }
 
-function getPosterAssets() {
-  var randomAssetGroup = {
-    randomImage: getRandomIndex(images),
-    randomTitles: getRandomIndex(titles),
-    randomQuotes: getRandomIndex(quotes)
-  }
-}
-
 function displayPoster(poster) {
-  // we're accessing the variable 'randomPosterImg, Quote, and title' 
-  // we're accessing the src of the image and the innerHTML that lives originally in the html
-  // which then we are assigning it to poster which represents the object in createPoster since we have to access the value of imageURL, quote and title.
-  // pretty much it's saying hey target this from the html and assign it to the value of imageURL quote and title.
   randomPosterImg.src = poster.imageURL,
   randomPosterQuote.innerHTML = poster.quote,
   randomPosterTitle.innerHTML = poster.title
 };
 
 function randomPoster() {
-  // this is where it gets fun
-  // It calls the getPosterAssets() function to get a random index for the poster assets.
-// It uses the random index to retrieve an image, title, and quote from the images, titles, and quotes arrays.
-// It calls the createPoster() function with the retrieved image, title, and quote to create a currentPoster object.
-// It calls the displayPoster() function to display the currentPoster object on a webpage.
-// Finally, it returns the currentPoster object.
-  var random = getPosterAssets();
-  currentPoster = createPoster(images[random.randomImage], titles[random.randomTitles], quotes[random.randomQuotes]);
+  currentPoster = createPoster(images[ getRandomIndex(images)], titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)]);
   displayPoster(currentPoster);
   return currentPoster;
 }
-
-/* Pseudocode:
-***************Done*********************
-DONE!!! Create a function that will return random assets:
-- images
-- titles
-- quotes
-DONE!!! We will need to use the getRandomIndex function to choose each random asset
-NOPE - didn't need this because we just had to call the function to getRandomIndex and then populate that into an Objecty (We think we will need three separate for loops to run through the three different arrays)
-**********************************************
-
-Then, we will use the object from "getPosterAssets" to populate the arguments of the createPoster function (imageURL, title, quote) - will need to use an event listener as well
-
-We have to do something with the outome of the object in "getPosterAssets" to convert the random index number to the string associated with that index number
-
-We need to create another function that uses .innerHTML and .innerText, to change the values of the poster - will use .src to target the image URL
-
-// function randomCover() {
-//   randomPosterImg.innerText = getPosterAssets(randomAssetGroup.randomImage)
-} */
