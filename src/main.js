@@ -2,12 +2,18 @@
 var randomPosterImg = document.querySelector('.poster-img');
 var randomPosterTitle = document.querySelector('.poster-title');
 var randomPosterQuote = document.querySelector('.poster-quote');
-var randomPosterButton = document.querySelector('.show-random');
+
+// --- sections
 var mainPoster = document.querySelector('.main-poster');
 var posterForm = document.querySelector('.poster-form');
-var showForm = document.querySelector('.show-form');
-var showSavedPosters = document.querySelector('.make-poster');
-var savedPoster = document.querySelector('.saved-posters')
+var savedPostersPage = document.querySelector('.saved-posters');
+// var makePoster = document.querySelector('.make-poster');
+
+// --- buttons
+var randomPosterButton = document.querySelector('.show-random');
+var makePosterButton = document.querySelector('.show-form');
+var nevermindButtom = document.querySelector('.show-main');
+var showSavedButton = document.querySelector('.show-saved');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -113,8 +119,9 @@ var currentPoster;
 // event listeners go here 👇
 window.addEventListener('load', randomPoster);
 randomPosterButton.addEventListener('click', randomPoster);
-showForm.addEventListener('click', buildPoster);
-showSavedPosters.addEventListener('click', viewSavedPosters);
+makePosterButton.addEventListener('click', makePoster);
+nevermindButtom.addEventListener('click', backToMain)
+showSavedButton.addEventListener('click', showSavedPosters)
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -142,16 +149,19 @@ function randomPoster() {
   return currentPoster;
 }
 
-function buildPoster() {
-  // mainPoster.classList.add('hidden')
-  // posterForm.classList.remove('hidden')
+function makePoster() {
   hide([mainPoster]);
   add([posterForm]);
 }
 
-function viewSavedPosters() {
-  add([savedPoster])
-  hide([mainPoster, posterForm])
+function backToMain() {
+  hide([posterForm]);
+  add([mainPoster]);
+}
+
+function showSavedPosters() {
+  hide([mainPoster]);
+  add([savedPosters]);
 }
 
 function hide(elements) {
@@ -167,3 +177,10 @@ function add(elements) {
 }
 
 // Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
+
+// --- 
+
+/* 
+- we're going to need to push the saved posters to the saved posters array
+doing something with the line 38 on html bc that's where they're going into.
+*/
