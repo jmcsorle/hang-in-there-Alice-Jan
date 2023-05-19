@@ -14,7 +14,7 @@ var randomPosterButton = document.querySelector('.show-random');
 var makePosterButton = document.querySelector('.show-form');
 var nevermindButtom = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
-// var backToMainButton = document.querySelector('.back-to-main')
+var backToMainButton = document.querySelector('.back-to-main')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -114,6 +114,7 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+//global variables
 var savedPosters = [];
 var currentPoster;
 
@@ -123,7 +124,8 @@ randomPosterButton.addEventListener('click', randomPoster);
 makePosterButton.addEventListener('click', makePoster);
 nevermindButtom.addEventListener('click', backToMain)
 showSavedButton.addEventListener('click', showSavedPosters)
-backToMainButton.addEventListener('click', showSavedPosters)
+backToMainButton.addEventListener('click', backToMain)
+
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -151,31 +153,31 @@ function randomPoster() {
 }
 
 function makePoster() {
-  hide(mainPoster);
-  show(posterForm);
-}
-
-function backToMain() {
-  hide(posterForm);
-  show(mainPoster);
+  hide([mainPoster]);
+  show([posterForm]);
 }
 
 function showSavedPosters() {
-  hide(mainPoster);
-  show(savedPostersPage);
+  hide([mainPoster]);
+  show([savedPostersPage]);
 }
 
-function hide(element) {
-  element.classList.add('hidden')
+function backToMain() {
+  hide([savedPostersPage, posterForm]);
+  show([mainPoster]);
 }
 
-function show(element) {
-  element.classList.remove('hidden')
+function hide(elements) {
+  for(var i = 0; i < elements.length; i++)
+   {elements[i].classList.add('hidden')
+  }
 }
-// Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
 
-// --- 
-
+function show(elements) {
+  for(var i = 0; i < elements.length; i++)
+   {elements[i].classList.remove('hidden')
+  }
+}
 /* 
 - we're going to need to push the saved posters to the saved posters array
 doing something with the line 38 on html bc that's where they're going into.
@@ -184,4 +186,17 @@ doing something with the line 38 on html bc that's where they're going into.
   - title
   - quotes
   - image
+
+*************
+if(savedPostersPage === posterForm) {
+    hide(posterForm);
+    show(mainPoster);
+  }
+  if(currentPoster === savedPostersPage) {
+    hide(savedPostersPage);
+    show(mainPoster);
+  }
+  *************
+
+
 */
