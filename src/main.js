@@ -6,6 +6,8 @@ var randomPosterButton = document.querySelector('.show-random');
 var mainPoster = document.querySelector('.main-poster');
 var posterForm = document.querySelector('.poster-form');
 var showForm = document.querySelector('.show-form');
+var showSavedPosters = document.querySelector('.make-poster');
+var savedPoster = document.querySelector('.saved-posters')
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -112,6 +114,7 @@ var currentPoster;
 window.addEventListener('load', randomPoster);
 randomPosterButton.addEventListener('click', randomPoster);
 showForm.addEventListener('click', buildPoster);
+showSavedPosters.addEventListener('click', viewSavedPosters);
 
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
@@ -142,8 +145,13 @@ function randomPoster() {
 function buildPoster() {
   // mainPoster.classList.add('hidden')
   // posterForm.classList.remove('hidden')
-  hide([mainPoster])
-  add([posterForm])
+  hide([mainPoster]);
+  add([posterForm]);
+}
+
+function viewSavedPosters() {
+  add([savedPoster])
+  hide([mainPoster, posterForm])
 }
 
 function hide(elements) {
@@ -157,3 +165,5 @@ function add(elements) {
   elements[i].classList.remove('hidden');
   }
 }
+
+// Be able to switch between the three views (main poster, form, and saved posters) on the correct button clicks
