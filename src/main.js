@@ -127,10 +127,10 @@ var currentPoster;
 window.addEventListener('load', randomPoster);
 randomPosterButton.addEventListener('click', randomPoster);
 makePosterButton.addEventListener('click', makePoster);
-nevermindButtom.addEventListener('click', backToMain)
-showSavedButton.addEventListener('click', showSavedPosters)
-backToMainButton.addEventListener('click', backToMain)
-showMyPosterButton.addEventListener('click', showMyPoster)
+nevermindButtom.addEventListener('click', backToMain);
+showSavedButton.addEventListener('click', showSavedPosters);
+backToMainButton.addEventListener('click', backToMain);
+showMyPosterButton.addEventListener('click', showMyPoster);
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -142,7 +142,8 @@ function createPoster(imageURL, title, quote) {
     id: Date.now(), 
     imageURL: imageURL, 
     title: title, 
-    quote: quote}
+    quote: quote
+  }
 }
 
 function displayPoster(poster) {
@@ -152,9 +153,26 @@ function displayPoster(poster) {
 };
 
 function randomPoster() {
-  currentPoster = createPoster(images[ getRandomIndex(images)], titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)]);
+  currentPoster = createPoster(images[getRandomIndex(images)], titles[getRandomIndex(titles)], quotes[getRandomIndex(quotes)]);
   displayPoster(currentPoster);
   return currentPoster;
+}
+
+function showMyPoster(event) {
+  event.preventDefault();
+  saveInput();
+  currentPoster = createPoster(imageInput.value, titleInput.value, quoteInput.value)
+  displayPoster(currentPoster);
+  backToMain();
+  return currentPoster;
+}
+
+function saveInput() {
+  images.push(imageInput.value);
+  titles.push(titleInput.value);
+  quotes.push(quoteInput.value);
+  // return console.log(myPoster)
+  
 }
 
 function makePoster() {
@@ -173,14 +191,14 @@ function backToMain() {
 }
 
 function hide(elements) {
-  for(var i = 0; i < elements.length; i++)
-   {elements[i].classList.add('hidden')
+  for(var i = 0; i < elements.length; i++) {
+    elements[i].classList.add('hidden');
   }
 }
 
 function show(elements) {
-  for(var i = 0; i < elements.length; i++)
-   {elements[i].classList.remove('hidden')
+  for(var i = 0; i < elements.length; i++) {
+    elements[i].classList.remove('hidden');
   }
 }
 /* 
