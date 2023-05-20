@@ -7,15 +7,20 @@ var randomPosterQuote = document.querySelector('.poster-quote');
 var mainPoster = document.querySelector('.main-poster');
 var posterForm = document.querySelector('.poster-form');
 var savedPostersPage = document.querySelector('.saved-posters');
-// var makePoster = document.querySelector('.make-poster');
 
 // --- buttons
 var randomPosterButton = document.querySelector('.show-random');
 var makePosterButton = document.querySelector('.show-form');
 var nevermindButtom = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
-var backToMainButton = document.querySelector('.back-to-main')
+var backToMainButton = document.querySelector('.back-to-main');
+var showMyPosterButton = document.querySelector('.make-poster');
+// var makePosterButton = document.querySelector('.make-poster');
 
+// --- inputs
+var imageInput = document.querySelector('#poster-image-url');
+var titleInput = document.querySelector('#poster-title');
+var quoteInput = document.querySelector('#poster-quote');
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -125,7 +130,7 @@ makePosterButton.addEventListener('click', makePoster);
 nevermindButtom.addEventListener('click', backToMain)
 showSavedButton.addEventListener('click', showSavedPosters)
 backToMainButton.addEventListener('click', backToMain)
-
+showMyPosterButton.addEventListener('click', showMyPoster)
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -179,24 +184,17 @@ function show(elements) {
   }
 }
 /* 
-- we're going to need to push the saved posters to the saved posters array
-doing something with the line 38 on html bc that's where they're going into.
-- figure out how the form input can get saved and pushed into the saved posters array to show in the saved posters form.
-- an array of object
-  - title
-  - quotes
-  - image
-
-*************
-if(savedPostersPage === posterForm) {
-    hide(posterForm);
-    show(mainPoster);
-  }
-  if(currentPoster === savedPostersPage) {
-    hide(savedPostersPage);
-    show(mainPoster);
-  }
-  *************
-
-
+---
+targets poster form
+target input fields
+-- img
+-- quote
+-- title
+pushing unique values to the exisiting arrays
+- make sure whatevrr input by user doesnt exist, do not duplicate.
+- own object.
+- each time they create a poster and they save it it needs to be givien an object name.
+- change back to main poster view
+- display the user info input in the main view.
+- using event.preventDefault()
 */
