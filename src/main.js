@@ -15,9 +15,10 @@ var nevermindButtom = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
 var backToMainButton = document.querySelector('.back-to-main');
 var showMyPosterButton = document.querySelector('.make-poster');
-// var makePosterButton = document.querySelector('.make-poster');
+var saveThisPosterButton = document.querySelector('.save-poster')
 
 // --- inputs
+
 var imageInput = document.querySelector('#poster-image-url');
 var titleInput = document.querySelector('#poster-title');
 var quoteInput = document.querySelector('#poster-quote');
@@ -131,6 +132,8 @@ nevermindButtom.addEventListener('click', backToMain);
 showSavedButton.addEventListener('click', showSavedPosters);
 backToMainButton.addEventListener('click', backToMain);
 showMyPosterButton.addEventListener('click', showMyPoster);
+saveThisPosterButton.addEventListener('click', savePoster);
+
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -173,6 +176,11 @@ function saveInput() {
   quotes.push(quoteInput.value);
   // return console.log(myPoster)
   
+}
+
+function savePoster() {
+  savedPosters.push(currentPoster)
+  console.log(savedPosters);
 }
 
 function makePoster() {
