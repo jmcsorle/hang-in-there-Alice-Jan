@@ -164,7 +164,7 @@ function randomPoster() {
 function showMyPoster(event) {
   event.preventDefault();
   saveInput();
-  currentPoster = createPoster(imageInput.value, titleInput.value, quoteInput.value)
+  currentPoster = createPoster(imageInput.value, titleInput.value, quoteInput.value);
   displayPoster(currentPoster);
   backToMain();
   return currentPoster;
@@ -174,13 +174,21 @@ function saveInput() {
   images.push(imageInput.value);
   titles.push(titleInput.value);
   quotes.push(quoteInput.value);
-  // return console.log(myPoster)
-  
+  // console.log(images, titles, quotes);
 }
 
 function savePoster() {
-  savedPosters.push(currentPoster)
-  console.log(savedPosters);
+  if (!checkPoster(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
+}
+
+function checkPoster(poster) {
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id === poster.id) {  
+      return true;
+    }
+  }
 }
 
 function makePoster() {
@@ -199,28 +207,16 @@ function backToMain() {
 }
 
 function hide(elements) {
-  for(var i = 0; i < elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) {
     elements[i].classList.add('hidden');
   }
 }
 
 function show(elements) {
-  for(var i = 0; i < elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) {
     elements[i].classList.remove('hidden');
   }
 }
 /* 
----
-targets poster form
-target input fields
--- img
--- quote
--- title
-pushing unique values to the exisiting arrays
-- make sure whatevrr input by user doesnt exist, do not duplicate.
-- own object.
-- each time they create a poster and they save it it needs to be givien an object name.
-- change back to main poster view
-- display the user info input in the main view.
-- using event.preventDefault()
+
 */
