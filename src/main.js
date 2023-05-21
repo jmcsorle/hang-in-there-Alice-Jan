@@ -15,9 +15,10 @@ var nevermindButtom = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
 var backToMainButton = document.querySelector('.back-to-main');
 var showMyPosterButton = document.querySelector('.make-poster');
-// var makePosterButton = document.querySelector('.make-poster');
+var saveThisPosterButton = document.querySelector('.save-poster')
 
 // --- inputs
+
 var imageInput = document.querySelector('#poster-image-url');
 var titleInput = document.querySelector('#poster-title');
 var quoteInput = document.querySelector('#poster-quote');
@@ -131,6 +132,8 @@ nevermindButtom.addEventListener('click', backToMain);
 showSavedButton.addEventListener('click', showSavedPosters);
 backToMainButton.addEventListener('click', backToMain);
 showMyPosterButton.addEventListener('click', showMyPoster);
+saveThisPosterButton.addEventListener('click', savePoster);
+
 // functions and event handlers go here 👇
 // (we've provided two to get you started)!
 function getRandomIndex(array) {
@@ -161,7 +164,7 @@ function randomPoster() {
 function showMyPoster(event) {
   event.preventDefault();
   saveInput();
-  currentPoster = createPoster(imageInput.value, titleInput.value, quoteInput.value)
+  currentPoster = createPoster(imageInput.value, titleInput.value, quoteInput.value);
   displayPoster(currentPoster);
   backToMain();
   return currentPoster;
@@ -171,8 +174,21 @@ function saveInput() {
   images.push(imageInput.value);
   titles.push(titleInput.value);
   quotes.push(quoteInput.value);
-  // return console.log(myPoster)
-  
+  // console.log(images, titles, quotes);
+}
+
+function savePoster() {
+  if (!checkPoster(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
+}
+
+function checkPoster(poster) {
+  for (var i = 0; i < savedPosters.length; i++) {
+    if (savedPosters[i].id === poster.id) {  
+      return true;
+    }
+  }
 }
 
 function makePoster() {
@@ -191,28 +207,16 @@ function backToMain() {
 }
 
 function hide(elements) {
-  for(var i = 0; i < elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) {
     elements[i].classList.add('hidden');
   }
 }
 
 function show(elements) {
-  for(var i = 0; i < elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) {
     elements[i].classList.remove('hidden');
   }
 }
 /* 
----
-targets poster form
-target input fields
--- img
--- quote
--- title
-pushing unique values to the exisiting arrays
-- make sure whatevrr input by user doesnt exist, do not duplicate.
-- own object.
-- each time they create a poster and they save it it needs to be givien an object name.
-- change back to main poster view
-- display the user info input in the main view.
-- using event.preventDefault()
+
 */
