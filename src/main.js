@@ -4,11 +4,10 @@ var randomPosterTitle = document.querySelector('.poster-title');
 var randomPosterQuote = document.querySelector('.poster-quote');
 
 // --- sections
-var mainPoster = document.querySelector('.main-poster');
+var mainPoster = document.querySelector('.main-poster'); 
 var posterForm = document.querySelector('.poster-form');
 var savedPostersPage = document.querySelector('.saved-posters');
 var posterGrid = document.querySelector('.saved-posters-grid');
-var allPosters = document.querySelectorAll('.mini-posters');
 
 // --- buttons
 var randomPosterButton = document.querySelector('.show-random');
@@ -17,12 +16,13 @@ var nevermindButtom = document.querySelector('.show-main');
 var showSavedButton = document.querySelector('.show-saved');
 var backToMainButton = document.querySelector('.back-to-main');
 var showMyPosterButton = document.querySelector('.make-poster');
-var saveThisPosterButton = document.querySelector('.save-poster')
+var saveThisPosterButton = document.querySelector('.save-poster');
 
 // --- inputs
 var imageInput = document.querySelector('#poster-image-url');
 var titleInput = document.querySelector('#poster-title');
 var quoteInput = document.querySelector('#poster-quote');
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -181,7 +181,7 @@ function savePoster() {
   if (!checkPoster(currentPoster)) {
     savedPosters.push(currentPoster);
   }
-  coverImg()
+  coverImg();
 }
 
 function checkPoster(poster) {
@@ -196,11 +196,11 @@ function coverImg() {
   posterGrid.innerHTML = " ";
   for (var i = 0; i < savedPosters.length; i++) {
     posterGrid.innerHTML += ` 
-    <article class="mini-posters" id="${savedPosters[i].id}">
+    <article class="mini-poster" id="${savedPosters[i].id}">
     <img class="mini-poster img" src="${savedPosters[i].imageURL}">
     <h2 class="mini-poster-title"> ${savedPosters[i].title}</h2>
     <h4 class="mini-poster-quote"> ${savedPosters[i].quote}</h4>
-  </article>
+    </article>
     `
   }
 }
@@ -208,6 +208,8 @@ function coverImg() {
 function deleteSavedPosters(event) {
   if (event.target.parentElement.id) {
     event.target.parentElement.remove();
+  } else if (event.target.id) {
+    event.target.remove();
   }
 }
 
@@ -217,8 +219,9 @@ function makePoster() {
 }
 
 function showSavedPosters() {
+  var allPosters = document.querySelectorAll('.mini-poster');
   for (var i = 0; i < allPosters.length; i++) {
-    allPosters[i].addEventListener('dblclick', deleteSavedPosters) 
+    allPosters[i].addEventListener('dblclick', deleteSavedPosters);
   }
   hide([mainPoster]);
   show([savedPostersPage]);
